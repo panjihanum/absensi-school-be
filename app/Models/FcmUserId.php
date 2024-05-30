@@ -10,7 +10,7 @@ class FcmUserId extends Model
 {
     use HasFactory, Uuid;
 
-    protected $fillable = ['fcm_token'];
+    protected $fillable = ['fcm_token', 'user_id'];
 
     public function user()
     {

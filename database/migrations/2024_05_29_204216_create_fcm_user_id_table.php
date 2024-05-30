@@ -13,7 +13,7 @@ class CreateFcmUserIdTable extends Migration
      */
     public function up()
     {
-        Schema::create('fcm_user_id', function (Blueprint $table) {
+        Schema::create('fcm_user_ids', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('fcm_token');
             $table->uuid('user_id');
@@ -29,6 +29,6 @@ class CreateFcmUserIdTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fcm_user_id');
+        Schema::dropIfExists('fcm_user_ids');
     }
 }

@@ -17,8 +17,14 @@ class FirebasePushNotification extends Notification
     protected $body;
     protected $fcmId;
     protected $data;
+    protected $firebaseUrl;
 
-    public function __construct($fcmId, $title, $body, $data = [])
+    public function __construct()
+    {
+        $this->firebaseUrl = base_path() . env('FIREBASE_CREDENTIALS');
+    }
+
+    public function setMessage($fcmId, $title, $body, $data = [])
     {
         $this->title = $title;
         $this->body = $body;
@@ -31,10 +37,10 @@ class FirebasePushNotification extends Notification
         return ['firebase'];
     }
 
-    public function toFirebase()
+    public function sendMessage()
     {
         $firebase = (new Factory)
-            ->withServiceAccount(base_path() . env('FIREBASE_CREDENTIALS'));
+            ->withServiceAccount($this->firebaseUrl);
 
         $messaging = $firebase->createMessaging();
 

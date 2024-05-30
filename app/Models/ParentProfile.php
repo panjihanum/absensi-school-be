@@ -16,4 +16,9 @@ class ParentProfile extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function studentParents()
+    {
+        return $this->hasMany(StudentParent::class);
+    }
 }

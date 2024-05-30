@@ -18,4 +18,9 @@ class Student extends Model
             ->withPivot('is_presence', 'is_permission', 'permission_detail')
             ->withTimestamps();
     }
+
+    public function studentParents()
+    {
+        return $this->hasMany(StudentParent::class);
+    }
 }

@@ -13,6 +13,7 @@ use App\Models\TeacherProfile;
 use App\Models\Student;
 use App\Models\LessonClass;
 use App\Models\StudentLessonClass;
+use App\Models\StudentParent;
 
 class DatabaseSeeder extends Seeder
 {
@@ -54,14 +55,14 @@ class DatabaseSeeder extends Seeder
 
         // Seed Roles
         $roleParent = Role::firstOrCreate(
-            ['role' => 'Parent'],
+            ['role' => 'PARENT'],
             [
                 'id' => (string) Str::uuid()
             ]
         );
 
         $roleTeacher = Role::firstOrCreate(
-            ['role' => 'Teacher'],
+            ['role' => 'TEACHER'],
             [
                 'id' => (string) Str::uuid()
             ]
@@ -85,7 +86,7 @@ class DatabaseSeeder extends Seeder
         );
 
         // Seed ParentProfiles
-        ParentProfile::firstOrCreate(
+        $parentProfileBudi = ParentProfile::firstOrCreate(
             ['user_id' => $userBudi->id],
             [
                 'id' => (string) Str::uuid(),
@@ -96,7 +97,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        ParentProfile::firstOrCreate(
+        $parentProfileHasanah = ParentProfile::firstOrCreate(
             ['user_id' => $userHasanah->id],
             [
                 'id' => (string) Str::uuid(),
@@ -175,6 +176,39 @@ class DatabaseSeeder extends Seeder
                 'start_time_lesson' => '10:30:00',
                 'end_time_lesson' => '12:30:00',
             ]
+        );
+
+        StudentParent::firstOrCreate(
+            [
+                'student_id' => $student1->id,
+                'parent_profile_id' => $parentProfileBudi->id,
+            ],
+            ['id' => (string) Str::uuid()]
+        );
+
+
+        StudentParent::firstOrCreate(
+            [
+                'student_id' => $student2->id,
+                'parent_profile_id' => $parentProfileHasanah->id,
+            ],
+            ['id' => (string) Str::uuid()]
+        );
+
+        StudentParent::firstOrCreate(
+            [
+                'student_id' => $student3->id,
+                'parent_profile_id' => $parentProfileHasanah->id,
+            ],
+            ['id' => (string) Str::uuid()]
+        );
+
+        StudentParent::firstOrCreate(
+            [
+                'student_id' => $student3->id,
+                'parent_profile_id' => $parentProfileBudi->id,
+            ],
+            ['id' => (string) Str::uuid()]
         );
 
         // Seed StudentLessonClasses
