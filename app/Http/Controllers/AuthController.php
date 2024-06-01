@@ -50,9 +50,9 @@ class AuthController extends Controller
             ->orWhere('email', $request->username)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
+            return response()->json(['errors' => [
                 'username' => ['The provided credentials are incorrect.'],
-            ]);
+            ]], 422);
         }
 
         $token = $user->createToken("authToken")->plainTextToken;
