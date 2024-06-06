@@ -10,6 +10,13 @@ class Student extends Model
     protected $keyType = 'string';
     public $incrementing = false;
 
+    protected $fillable = [
+        'name',
+        'nis',
+        'nisn',
+        'gender'
+    ];
+
     protected static function boot()
     {
         parent::boot();
@@ -20,7 +27,6 @@ class Student extends Model
         });
     }
 
-    // Relationships
     public function parents()
     {
         return $this->belongsToMany(ParentProfile::class, 'student_parents');

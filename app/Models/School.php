@@ -10,6 +10,15 @@ class School extends Model
     protected $keyType = 'string';
     public $incrementing = false;
 
+    protected $fillable = [
+        'name',
+        'government_name',
+        'type',
+        'address',
+        'phone',
+        'postal_code'
+    ];
+
     protected static function boot()
     {
         parent::boot();

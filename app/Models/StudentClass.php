@@ -10,6 +10,14 @@ class StudentClass extends Model
     protected $keyType = 'string';
     public $incrementing = false;
 
+    protected $fillable = [
+        'name',
+        'start_date',
+        'end_date',
+        'homeroom_teacher_id',
+        'is_active'
+    ];
+
     protected static function boot()
     {
         parent::boot();
@@ -20,7 +28,6 @@ class StudentClass extends Model
         });
     }
 
-    // Relationships
     public function homeroomTeacher()
     {
         return $this->belongsTo(TeacherProfile::class, 'homeroom_teacher_id');

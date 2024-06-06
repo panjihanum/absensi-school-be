@@ -10,6 +10,15 @@ class Presence extends Model
     protected $keyType = 'string';
     public $incrementing = false;
 
+    protected $fillable = [
+        'date',
+        'is_presence',
+        'is_absence',
+        'desc_absence',
+        'is_permission',
+        'desc_permission'
+    ];
+
     protected static function boot()
     {
         parent::boot();

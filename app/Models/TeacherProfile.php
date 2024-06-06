@@ -10,6 +10,14 @@ class TeacherProfile extends Model
     protected $keyType = 'string';
     public $incrementing = false;
 
+    protected $fillable = [
+        'name',
+        'address',
+        'phone',
+        'email',
+        'user_id'
+    ];
+
     protected static function boot()
     {
         parent::boot();
